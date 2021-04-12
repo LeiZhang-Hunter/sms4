@@ -2,7 +2,6 @@ extern "C" {
     #include "openssl/sms4.h"
 }
 
-#include <string>
 #include <iostream>
 #include <memory>
 
