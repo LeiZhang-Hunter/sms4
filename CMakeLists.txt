@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 3.16)
 project(sms4)
 
 set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
-
+set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -Wall -O3")
+SET(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g -ggdb")
 include_directories(src)
 include_directories(openssl)
 link_directories(lib)

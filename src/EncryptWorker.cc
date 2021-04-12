@@ -8,6 +8,8 @@ using namespace std::placeholders;
 
 void src::EncryptWorker::run() {
 
+
+
     //注入命令处理的回调函数
 
     command->reg('i', std::bind(&EncryptWorker::setInputFile, shared_from_this(), _1, _2, _3));
@@ -63,7 +65,7 @@ void src::EncryptWorker::run() {
     std::string encryptString;
     std::string decryptString;
     std::string co;
-    ssize_t readBytes;
+    size_t readBytes;
 
     //是否是加密
     bool isEncrypt = true;

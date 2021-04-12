@@ -8,8 +8,6 @@
 void src::SMS4Encrypt::encrypt(const std::string &context, std::string &encryptBody) {
     //对数据进行加密
     size_t contentLength = context.length();
-    size_t sms4StrInitVecLength = sms4StrInitVec.length();
-    //int nEnDataLen = ((strPlaintext.length()/BLOCK_SIZE)+1) * BLOCK_SIZE;
     size_t encryptDataLen = ((contentLength / BLOCK_SIZE) + 1) * BLOCK_SIZE;
     //加密的key
     sms4_key_t key;
