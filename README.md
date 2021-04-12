@@ -1,5 +1,17 @@
 # sms4 加解密工具
 
+## 已经使用的环境
+
+```
+ubuntu、centos
+```
+
+## github地址
+
+```
+https://github.com/LeiZhang-Hunter/sms4
+```
+
 ## 安装
 
 ```
