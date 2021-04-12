@@ -1,11 +1,13 @@
 #!/bin/bash
 
-if [ ! -f "build" ]; then
- touch "build"
+if [ ! -d "build" ]; then
+ mkdir "build"
 fi
 
 cd build
 
 cmake ..
 
-make
+make -j4
+
+
