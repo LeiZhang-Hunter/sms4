@@ -43,3 +43,16 @@ build.sh
 ```
 ./sms4 -i a.en.txt -o a.de.txt -d de -p 1000000ACCOUNT#@ -v 462_V20000000000
 ```
+
+## 压力测试
+
+单线程处理,283M大文件处理结果:
+
+```
+zhanglei@zhanglei-Latitude-5400:~/ourc/sms4/build$ time ./sms4 -i a.en.txt -o a.de.txt -d de -p 1000000ACCOUNT#@ -v 462_V20000000000
+
+real	0m4.090s
+user	0m3.885s
+sys	0m0.204s
+
+```
