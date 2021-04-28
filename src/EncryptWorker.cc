@@ -87,12 +87,10 @@ void src::EncryptWorker::run() {
     }
 
     //读取文件
-    std::cout << buffer_size << std::endl;
     while (1) {
         buffer.resize(buffer_size);
 
         readBytes = command->readn(readFd, (void *)(buffer.c_str()), buffer_size);
-        std::cout << readBytes << std::endl;
 
         if (readBytes == 0) {
             break;
