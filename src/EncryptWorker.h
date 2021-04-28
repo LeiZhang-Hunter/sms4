@@ -53,6 +53,12 @@ namespace src {
             return true;
         }
 
+        bool setBlockSize(int argc, char **argv, const char &cmd) {
+            std::string tmpBlockSize = argv[optind];
+            blockSize = static_cast<size_t>(atoi(tmpBlockSize.c_str()));
+            return true;
+        }
+
         void run();
 
         ~EncryptWorker() {
@@ -80,6 +86,8 @@ namespace src {
 
         //操作加密还是解密
         std::string operation = "en";
+
+        size_t blockSize = 0;
 
     };
 }

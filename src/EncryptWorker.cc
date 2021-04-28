@@ -7,9 +7,6 @@
 using namespace std::placeholders;
 
 void src::EncryptWorker::run() {
-
-
-
     //注入命令处理的回调函数
 
     command->reg('i', std::bind(&EncryptWorker::setInputFile, shared_from_this(), _1, _2, _3));
@@ -17,6 +14,7 @@ void src::EncryptWorker::run() {
     command->reg('p', std::bind(&EncryptWorker::setPassword, shared_from_this(), _1, _2, _3));
     command->reg('v', std::bind(&EncryptWorker::setVector, shared_from_this(), _1, _2, _3));
     command->reg('d', std::bind(&EncryptWorker::setOperation, shared_from_this(), _1, _2, _3));
+    command->reg('s', std::bind(&EncryptWorker::setBlockSize, shared_from_this(), _1, _2, _3));
     command->parse();
 
     //输入参数检查
@@ -65,7 +63,7 @@ void src::EncryptWorker::run() {
     std::string encryptString;
     std::string decryptString;
     std::string co;
-    size_t readBytes;
+    size_t readBytes = 0;
 
     //是否是加密
     bool isEncrypt = true;
@@ -77,17 +75,24 @@ void src::EncryptWorker::run() {
 
 
     size_t buffer_size = 0;
+    //size_t block_size = BUFSIZ;
+    //这里对由于广电要求
+    if (!blockSize) {
+        blockSize = BUFSIZ;
+    }
     if (isEncrypt) {
-        buffer_size = BUFSIZ;
+        buffer_size = blockSize;
     } else {
-        buffer_size += ((BUFSIZ / BLOCK_SIZE) + 1) * BLOCK_SIZE;
+        buffer_size += ((blockSize / BLOCK_SIZE) + 1) * BLOCK_SIZE;
     }
 
     //读取文件
+    std::cout << buffer_size << std::endl;
     while (1) {
         buffer.resize(buffer_size);
 
         readBytes = command->readn(readFd, (void *)(buffer.c_str()), buffer_size);
+        std::cout << readBytes << std::endl;
 
         if (readBytes == 0) {
             break;
